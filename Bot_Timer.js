@@ -13,17 +13,19 @@ bot.start((ctx) => ctx.reply(`Приветсвую! ${ctx.message.from.first_nam
 
 bot.help((ctx) => ctx.reply('Отправь мне "Напомни" и нужно событие, далее "в" и время. Например:\nНапомни 07.02 купить билеты в 14:50\n*07.02 - это дата и месяц(если необходимо не на сегодня) '))
 
-bot.hears('Время до карания Деда Мороза', function(ctx) {
-  const now = new Date();
-  const newyear = new Date(2021, 11, 31, 24, 0, 0);
-  let left = newyear - now;
-  let days = ~~((left) / (1000 * 60 * 60 * 24));
-  left = left - (days * 1000 * 60 * 60 * 24);
-  let hours = ~~((left)/ (1000 * 60 * 60));
-  left -= hours * 1000 * 60 * 60;
-  let min = ~~((left) / (1000 * 60));
-  return ctx.replyWithHTML('Тебе осталось до карания: ' + `<i>${days} days. ${hours} hours. ${min} min.</i>`)
-});
+// Time until new year
+//bot.hears('Время до карания Деда Мороза', function(ctx) {
+//   const now = new Date();
+//   const newyear = new Date(2021, 11, 31, 24, 0, 0);
+//   let left = newyear - now;
+//   let days = ~~((left) / (1000 * 60 * 60 * 24));
+//   left = left - (days * 1000 * 60 * 60 * 24);
+//   let hours = ~~((left)/ (1000 * 60 * 60));
+//   left -= hours * 1000 * 60 * 60;
+//   let min = ~~((left) / (1000 * 60));
+//   return ctx.replyWithHTML('Тебе осталось до карания: ' + `<i>${days} days. ${hours} hours. ${min} min.</i>`)
+// });
+
 
 bot.hears('Мои напоминания', (ctx) => {
   if (notes.length !== 0) {
