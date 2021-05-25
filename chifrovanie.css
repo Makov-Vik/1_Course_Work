@@ -1,0 +1,74 @@
+body{
+	font-family:"Segoe UI";
+	background-color:#202020;
+
+}
+body, .text_input {
+ 
+  justify-content:right;
+  align-items: center;
+  min-height: 10vh;
+  min-width: 70vh;
+  margin-left: (5rem );
+
+}
+body, .text_input1 {
+ 
+  justify-content:right;
+  align-items: center;
+  min-height: 10vh;
+  min-width: 70vh;
+  margin-left: (5rem );
+
+}
+
+body, .text_out {
+ 
+  justify-content:right;
+  align-items: center;
+  min-height: 10vh;
+  margin-top: calc(2rem);
+}
+body, .text_out1 {
+ 
+  justify-content:right;
+  align-items: center;
+  min-height: 10vh;
+  margin-top: calc(2rem);
+}
+
+.button {
+  position: absolute ;
+  min-height: 5vh;
+  min-width: 10vh;
+  margin-left: calc(2rem + 2px);
+}
+
+h1,h3{
+	text-align:center;
+	color:#FFFFFF;
+	
+}
+
+a{
+	color:#cdd4ca;
+
+}
+
+mark{
+	background-color:#FFA500;
+}
+span{
+  background-color:#FFA500;
+	border: 2px solid #FFA500;
+	border-radius: 5px;
+
+}
+nav ul{
+	display:flex;
+	justify-content:space-around;
+	background-color: #252525;
+	height: 40px;
+	padding-top:20px;
+	border-style: dotted;
+}
