@@ -43,7 +43,8 @@ asymmetricalcipher = () => {
   const outputasymciphet = [];
 
   // create the first element to obfuscate the message
-  outputasymciphet[0] = BigInt(50);
+  const date = BigInt(new Date().getDate() + 33);
+  outputasymciphet[0] = date;
 
   // I assign public key to variables
   const FirstKey = BigInt(openkey[0]);
@@ -53,7 +54,7 @@ asymmetricalcipher = () => {
     textinput[i] = textinput[i].charCodeAt(0);
 
     // asymmetric encryption
-    outputasymciphet[i + 1] = ((BigInt(textinput[i]) ** FirstKey) % SecondKey) + BigInt(33);
+    outputasymciphet[i + 1] = ((BigInt(textinput[i]) ** FirstKey) % SecondKey) + date;
 
     // entanglement
     outputasymciphet[i + 1] = (outputasymciphet[i + 1] + outputasymciphet[i]);
@@ -88,8 +89,11 @@ asymmetricaldecryption = () => {
     // untangling
     outputasymdecryption[i - 1] = (textinput[i] - textinput[i - 1]);
   }
+  // create the first element to obfuscate the message
+  const date = new Date().getDate() + 33;
+
   for (let i = 0; i < textinput.length - 1; i += 1) {
-    outputasymdecryption[i] -= 33;
+    outputasymdecryption[i] -= date;
   }
   for (let i = 0; i < textinput.length - 1; i += 1) {
     // asymmetric decryption
