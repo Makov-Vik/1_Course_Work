@@ -41,17 +41,11 @@ asymmetricalcipher = () => {
   outputasymciphet[0] = BigInt(33);
   for (let i = 0; i < textinput.length; i += 1) {
     textinput[i] = textinput[i].charCodeAt(0);
-    // console.log('input char', textinput[i]);
     outputasymciphet[i + 1] = (BigInt(textinput[i]) ** BigInt(openkey[0])) % BigInt(openkey[1]) + BigInt(33);
-    // console.log('*change', Number(outputasymciphet[i]));
-    //console.log(typeof(outputasymciphet[i]), typeof(outputasymciphet[i - 1]), typeof(openkey[1]));
-    outputasymciphet[i + 1] = (outputasymciphet[i + 1] + outputasymciphet[i]) % BigInt(openkey[1]);
-    // outputasymciphet[i] = String.fromCharCode(outputasymciphet[i]);  вынести за FOR
+    outputasymciphet[i + 1] = (outputasymciphet[i + 1] + outputasymciphet[i]);
   }
-  for (let i = 0; i <= textinput.length; i += 1) {
-    console.log(outputasymciphet[i]);
+  for (let i = 0; i < textinput.length + 1; i += 1) {
     outputasymciphet[i] = String.fromCharCode(Number(outputasymciphet[i]));
-    console.log(outputasymciphet[i]);
   }
   outputasymciphet.join('');
   areacipher.innerText = outputasymciphet.join('');
@@ -65,22 +59,21 @@ asymmetricaldecryption = () => {
   output.innerHTML = '';
   const areadecryption = document.createElement('span');
   const outputasymdecryption = [];
-  outputasymdecryption[0] = 33;
-  outputasymdecryption[0];
-
 
   for (let i = 0; i < textinput.length; i += 1) {
-    textinput[i] = textinput[i].charCodeAt(0) - 33;
+    textinput[i] = textinput[i].charCodeAt(0);
   }
 
+  for (let i = 1; i < textinput.length; i += 1) {
+    outputasymdecryption[i - 1] = (textinput[i] - textinput[i - 1]);
+  }
   for (let i = 0; i < textinput.length - 1; i += 1) {
-    outputasymdecryption[i] = (textinput[i + 1] - textinput[i]) % privatekey[1];
-    outputasymdecryption[i] = (BigInt(outputasymdecryption[i]) ** BigInt(privatekey[0])) % BigInt(privatekey[1]);
-    
-    // console.log('out change', Number(outputasymdecryption[i]));
-    //outputasymdecryption[i] = String.fromCharCode(Number(outputasymdecryption[i]));
+    outputasymdecryption[i] -= 33;
   }
-  for (let i = 0; i < textinput.length; i += 1) {
+  for (let i = 0; i < textinput.length - 1; i += 1) {
+    outputasymdecryption[i] = (BigInt(outputasymdecryption[i]) ** BigInt(privatekey[0])) % BigInt(privatekey[1]);
+  }
+  for (let i = 0; i < textinput.length - 1; i += 1) {
     outputasymdecryption[i] = String.fromCharCode(Number(outputasymdecryption[i]));
   }
   outputasymdecryption.join('');
