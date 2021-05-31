@@ -11,6 +11,14 @@ body, .text_input {
   min-height: 10vh;
   min-width: 70vh;
   margin-left: (5rem );
+}
+
+#text_input_decryption{
+  justify-content:right;
+  align-items: center;
+  min-height: 10vh;
+  min-width: 70vh;
+  margin-left: (5rem );
 
 }
 
@@ -22,6 +30,33 @@ body, .text_out {
   margin-top: calc(2rem);
 }
 
+#open_inscription{
+  text-align:left;
+	color:#FFFFFF;
+  display:inline;
+}
+
+#open_key_field {
+  display: block;
+
+  min-width: 50vh;
+  min-height: 5vh;
+  
+}
+
+#private_inscription{
+  text-align:left;
+	color:#FFFFFF;
+  display:inline;
+}
+
+#private_key_field {
+  display: block;
+  min-width: 50vh;
+  min-height: 5vh;
+  
+}
+
 .button {
   position: absolute ;
   min-height: 5vh;
@@ -29,7 +64,27 @@ body, .text_out {
   margin-left: calc(2rem + 2px);
 }
 
-h1,h3{
+#asym_cipher {
+  position: absolute ;
+  min-height: 5vh;
+  min-width: 10vh;
+  margin-left: calc(2rem + 120px);
+}
+#asym_decryption {
+  position: absolute ;
+  min-height: 5vh;
+  min-width: 10vh;
+  margin-left: calc(2rem + 275px);
+}
+
+#Asymmetrically{
+  position: absolute ;
+  min-height: 5vh;
+  min-width: 10vh;
+  margin-left: calc(2rem + 2px);
+}
+
+h1, #motto{
 	text-align:center;
 	color:#FFFFFF;
 	

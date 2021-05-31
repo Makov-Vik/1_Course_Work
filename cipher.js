@@ -1,21 +1,17 @@
 'use strict';
 
-const text_input = document.getElementById('text_input');
-const text_out = document.getElementById('text_out');
-const text_unencrypt = document.getElementById('unencrypt');
+const asymmetricopen = document.getElementById('open_key_field');
+const asymmetricprivate = document.getElementById('private_key_field');
 
-text_out.innerHTML = '';
-const characterSpan = document.createElement('span');
+// const btn = document.createElement('button');
+// btn.id = 'Asymmetrically';
+// btn.textContent = 'Asymmetrically';
+// document.body.appendChild(btn);
+//btn.onclick = asymmetrically;
+//document.getElementById("button2").addEventListener("click", EncryptByUnicode);
 
-text_unencrypt.innerHTML = '';
-const characterSpan2 = document.createElement('span');
+document.querySelector('button').onclick = EncryptByUnicode;
 
-document.querySelector('button').onclick = encrypt_by_Unicodende;
+document.getElementById('asym_cipher').onclick = asymmetricalcipher;
 
-  // Unencrypt
-  // for (let i = 0; i < text.length; i += 1) {
-  //   text[i] = String.fromCharCode(text[i].charCodeAt(0) - key[i]);
-  //   out2 += text[i];
-  // }
-  // characterSpan2.innerText = out2;
-  // text_unencrypt.appendChild(characterSpan2);
+document.getElementById('asym_decryption').onclick = asymmetricaldecryption;

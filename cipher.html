@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <title>сipher_HUB</title>
   <link rel="stylesheet" href="cipher.css">
-  <script src="cipher.js" defer></script>
+  <script src="functions.js" defer></script>
+  <script  src="cipher.js" defer></script>
+
 </head>
 <body>
   <header>
     <h1 align='center'>cipher <mark>hub</mark></h1>
-    <h3 align='center'><q>In God we trust</q></h3>
+    <h3 id = 'motto' align='center'><q>In God we trust</q></h3>
   </header>
  
   <nav>
@@ -21,10 +23,24 @@
   </nav>
 
   <textarea id = "text_input" class = "text_input" autofocus></textarea>
+  
 
-  <button id = "button" class = "button">Go</button>
+  <button id = "button" class = "button">Unicode</button>
+  <input id = 'asym_cipher' type = 'button' value = 'Asymmetrical cipher'>
+  <input id = 'asym_decryption' type = 'button' value = 'Asymmetrical decryption'>
+
 
 <div class = "text_out" id = "text_out"></div>
 <div class = "unencrypt" id = "unencrypt"></div>
+<br />
+<textarea id = "text_input_decryption" class = "text_input_decryption" autofocus></textarea>
+<br /><br />
+<h3 id = 'open_inscription'>Your Open Key  </h3>
+<textarea id = "open_key_field" class = "open_key" autofocus></textarea>
+<div class = "asymmet_cipher" id = "asymmetrical_cipher"></div>
+<br />
+<h3 id = 'private_inscription'>Your Private Key  </h3>
+<textarea id = "private_key_field" class = "private_key" autofocus></textarea>
+<div class = "asymmet_decryption" id = "asymmetrical_decryption"></div>
 </body>
 </html>
