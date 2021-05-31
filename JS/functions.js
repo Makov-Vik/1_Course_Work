@@ -1,5 +1,5 @@
 // encryption with Unicode
-EncryptByUnicode = () => {
+encryptbyunicode = () => {
   const textinput = this.document.getElementById('text_input').value.split('');
   const textout = this.document.getElementById('text_out');
   const textunencrypt = this.document.getElementById('unencrypt');
