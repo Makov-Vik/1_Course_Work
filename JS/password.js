@@ -15,67 +15,67 @@ k.addEventListener('input', porno);
 m.addEventListener('click', copying2);
 
 function generator(len, settings) {
-    let str = "";
-    if (settings.BigChungus) {
-        str += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    }
-    if (settings.SmallChungus) {
-        str += 'abcdefghijklmnopqrstuvwxyz';
-    }
-    if (settings.Numbers) {
-        str += '0123456789';
-    }
-    if (settings.Symbols) {
-        str += 'a!@✝#$%^&*()_+№;:?-=卐';
-    }
-    let string = '';
-    for(let i = 0; i < len; i++) {
-        string += str[Math.round(Math.random() * (str.length - 1))];
-    }
-    return string;
+  let str = '';
+  if (settings.BigChungus) {
+    str += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  }
+  if (settings.SmallChungus) {
+    str += 'abcdefghijklmnopqrstuvwxyz';
+  }
+  if (settings.Numbers) {
+    str += '0123456789';
+  }
+  if (settings.Symbols) {
+    str += 'a!@✝#$%^&*()_+№;:?-=卐';
+  }
+  let string = '';
+  for (let i = 0; i < len; i++) {
+    string += str[Math.round(Math.random() * (str.length - 1))];
+  }
+  return string;
 }
 
 function porno() {
-  const e = this.document.getElementById("A-Z");
-  const f = this.document.getElementById("a-z");
-  const j = this.document.getElementById("0-9");
-  const h = this.document.getElementById("symbols");
+  const e = this.document.getElementById('A-Z');
+  const f = this.document.getElementById('a-z');
+  const j = this.document.getElementById('0-9');
+  const h = this.document.getElementById('symbols');
   const hui = {
     BigChungus: e.checked,
     SmallChungus: f.checked,
     Numbers: j.checked,
     Symbols: h.checked,
   };
-    b.value = generator(a.value, hui);
-    function amountgenerator(len){
-        let res = "";
-        if(len <= 1){
-            i.style.display = "none";
-            m.style.display = "none";
-        }
-        if(len > 1){
-            m.style.display = "";
-            i.style.display = "";
-            for(let i = 0; i < len; i++){
-                res += generator(a.value, hui) + "\n" ;
-            }
-        }
-        return res;
+  b.value = generator(a.value, hui);
+  function amountgenerator(len) {
+    let res = '';
+    if (len <= 1) {
+      i.style.display = 'none';
+      m.style.display = 'none';
     }
-    i.textContent = amountgenerator(k.value);
-    c.textContent = a.value;
-    g.textContent = k.value;
+    if (len > 1) {
+      m.style.display = '';
+      i.style.display = '';
+      for (let i = 0; i < len; i += 1) {
+        res += generator(a.value, hui) + '\n';
+      }
+    }
+    return res;
+  }
+  i.textContent = amountgenerator(k.value);
+  c.textContent = a.value;
+  g.textContent = k.value;
 }
 
 function copying() {
-    let copyText = document.getElementById("label");
-    copyText.select();
-    document.execCommand("copy");
-    alert("Copied the text: " + copyText.value);
-  }
+  const copyText = this.document.getElementById('label');
+  copyText.select();
+  this.document.execCommand('copy');
+  alert('Copied the text: ' + copyText.value);
+}
 function copying2() {
-    let copyText = document.getElementById("mass-password");
-    copyText.select();
-    document.execCommand("copy");
-    alert("Copied the text: " + copyText.value);
+  const copyText = this.document.getElementById('mass-password');
+  copyText.select();
+  this.document.execCommand('copy');
+  alert('Copied the text: ' + copyText.value);
 }
