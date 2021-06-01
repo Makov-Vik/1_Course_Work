@@ -6,13 +6,6 @@ const i = this.document.getElementById('mass-password');
 const g = this.document.getElementById('biba2');
 const k = this.document.getElementById('input2');
 const m = this.document.getElementById('button2');
-console.dir(i);
-a.addEventListener('input', porno);
-d.addEventListener('click', porno);
-b.addEventListener('click', copying);
-porno();
-k.addEventListener('input', porno);
-m.addEventListener('click', copying2);
 
 function generator(len, settings) {
   let str = '';
@@ -29,7 +22,7 @@ function generator(len, settings) {
     str += 'a!@✝#$%^&*()_+№;:?-=卐';
   }
   let string = '';
-  for (let i = 0; i < len; i++) {
+  for (let i = 0; i < len; i += 1) {
     string += str[Math.round(Math.random() * (str.length - 1))];
   }
   return string;
@@ -79,3 +72,11 @@ function copying2() {
   this.document.execCommand('copy');
   alert('Copied the text: ' + copyText.value);
 }
+
+console.dir(i);
+a.addEventListener('input', porno);
+d.addEventListener('click', porno);
+b.addEventListener('click', copying);
+porno();
+k.addEventListener('input', porno);
+m.addEventListener('click', copying2);
