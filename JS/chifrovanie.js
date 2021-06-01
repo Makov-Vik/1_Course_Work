@@ -2,20 +2,20 @@
 const btn = this.document.getElementById('copyText');
 const btnforkey = this.document.getElementById('copyKey');
 const uncopy = this.document.getElementById('uncopyText');
-const text_input = this.document.getElementById('text_input');
-const text_input1 = this.document.getElementById('text_input1');
-const key_input = this.document.getElementById('key_input');
-const text_out = this.document.getElementById('text_out');
-const text_outkey = this.document.getElementById('text_out1');
-const text_unencrypt = this.document.getElementById('unencrypt');
+const textinput = this.document.getElementById('text_input');
+const textinput1 = this.document.getElementById('text_input1');
+const keyinput = this.document.getElementById('key_input');
+const textout = this.document.getElementById('text_out');
+const textoutkey = this.document.getElementById('text_out1');
+const textunencrypt = this.document.getElementById('unencrypt');
 const button = this.document.getElementById('button');
 const rad = this.document.getElementsByName('dzen');
-text_out.innerHTML = '';
+textout.innerHTML = '';
 const characterSpan = this.document.createElement('span');
 const characterSpan3 = this.document.createElement('span');
 const allsymbols = '1234567890-=+[];/.<>~@#$^&()_!L:HAGWYIMNBCVXZSJ*"?№×÷|';
 const string = allsymbols.split('');
-text_unencrypt.innerHTML = '';
+textunencrypt.innerHTML = '';
 const characterSpan2 = this.document.createElement('span');
 const checking = (expression) => {
   const english = /^[a-zA-Z0-9]+$/;
@@ -62,12 +62,12 @@ const result = {
   coddingresult: 0,
 };
 const codding = () => { // функция кодировки
-  const checks = checking(text_input.value);
+  checking(textinput.value);
   const alphabet = {
   };
-  let res = text_input.value.split('');
+  let res = textinput.value.split('');
   const lenght = res.length;
-  let newalphabet = alphabet;
+  const newalphabet = alphabet;
   if (rad[1].checked) {
     const generatedkey = generatekey();// генерируем ключ
     for (let j = 0; j < lenght; j += 1) { // создаём алфавит символов в тексте 
@@ -88,9 +88,9 @@ const codding = () => { // функция кодировки
     result.key.cod = newalphabet;
     result.coddingresult = res;
     characterSpan3.innerText = result.key.name;
-    text_outkey.appendChild(characterSpan3);
+    textoutkey.appendChild(characterSpan3);
     characterSpan.innerText = result.coddingresult;
-    text_out.appendChild(characterSpan);
+    textout.appendChild(characterSpan);
   }
 
   // }
@@ -98,21 +98,21 @@ const codding = () => { // функция кодировки
   // вывод зашифрован текста
   // const uncodding = (key1, text) =>{ // функия раскодировки
   if (rad[0].checked) {
-    if (key_input.value === result.key.name) {
-      let resofuncoding = text_input1.value.split('');
+    if (keyinput.value === result.key.name) {
+      let resofuncoding = textinput1.value.split('');
       for (let i = 0; i < resofuncoding.length; i++ ) {
         for (const keys  of Object.keys(result.key.cod)) {
           if (resofuncoding[i] == result.key.cod[keys]) {
             resofuncoding[i] = keys;
           }
         }
-            }
+      }
       resofuncoding = resofuncoding.join('');
       characterSpan2.innerText = resofuncoding;
-      text_unencrypt.appendChild(characterSpan2);
+      textunencrypt.appendChild(characterSpan2);
     }
     else  alert('Wrong key');
-}
+  }
 };
 btn.onclick = function copytext() {
   navigator.clipboard.writeText(result.coddingresult);

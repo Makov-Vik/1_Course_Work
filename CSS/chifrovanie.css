@@ -38,6 +38,7 @@ body, .text_out {
   align-items: center;
   min-height: 10vh;
   margin-top: calc(2rem);
+  color:#FFFFFF;
 }
 body, .text_out1 {
  
