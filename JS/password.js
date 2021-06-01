@@ -1,52 +1,51 @@
-const a = document.getElementById("input");
-const b = document.getElementById("label");
-const c = document.getElementById("biba");
-const d = document.getElementById("button");
-const i = document.getElementById("mass-password");
-const g = document.getElementById("biba2");
-const k = document.getElementById("input2");
-const m = document.getElementById("button2");
-console.dir(i)
-a.addEventListener("input", porno);
-d.addEventListener("click",porno);
-b.addEventListener("click",copying);
+const a = this.document.getElementById('input');
+const b = this.document.getElementById('label');
+const c = this.document.getElementById('biba');
+const d = this.document.getElementById('button');
+const i = this.document.getElementById('mass-password');
+const g = this.document.getElementById('biba2');
+const k = this.document.getElementById('input2');
+const m = this.document.getElementById('button2');
+console.dir(i);
+a.addEventListener('input', porno);
+d.addEventListener('click', porno);
+b.addEventListener('click', copying);
 porno();
-k.addEventListener("input", porno);
-m.addEventListener("click", copying2);
+k.addEventListener('input', porno);
+m.addEventListener('click', copying2);
 
 function generator(len, settings) {
     let str = "";
-    if (settings.BigChungus){
+    if (settings.BigChungus) {
         str += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     }
-    if (settings.SmallChungus){
+    if (settings.SmallChungus) {
         str += 'abcdefghijklmnopqrstuvwxyz';
     }
-    if (settings.Numbers){
+    if (settings.Numbers) {
         str += '0123456789';
     }
-    if (settings.Symbols){
+    if (settings.Symbols) {
         str += 'a!@✝#$%^&*()_+№;:?-=卐';
     }
     let string = '';
-    for(let i = 0; i < len; i++){
+    for(let i = 0; i < len; i++) {
         string += str[Math.round(Math.random() * (str.length - 1))];
     }
     return string;
 }
 
-
-function porno(){
-    const e = document.getElementById("A-Z");
-    const f = document.getElementById("a-z");
-    const j = document.getElementById("0-9");
-    const h = document.getElementById("symbols");
-    let hui = {
-        BigChungus: e.checked,
-        SmallChungus: f.checked,
-        Numbers: j.checked,
-        Symbols: h.checked
-    }
+function porno() {
+  const e = this.document.getElementById("A-Z");
+  const f = this.document.getElementById("a-z");
+  const j = this.document.getElementById("0-9");
+  const h = this.document.getElementById("symbols");
+  const hui = {
+    BigChungus: e.checked,
+    SmallChungus: f.checked,
+    Numbers: j.checked,
+    Symbols: h.checked,
+  };
     b.value = generator(a.value, hui);
     function amountgenerator(len){
         let res = "";
