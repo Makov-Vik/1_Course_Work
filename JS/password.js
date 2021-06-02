@@ -22,7 +22,7 @@ function generator(len, settings) {
     str += 'a!@✝#$%^&*()_+№;:?-=卐';
   }
   let string = '';
-  for (let i = 0; i < len; i += 1) {
+  for (let j = 0; i < len; j += 1) {
     string += str[Math.round(Math.random() * (str.length - 1))];
   }
   return string;
@@ -49,8 +49,8 @@ function porno() {
     if (len > 1) {
       m.style.display = '';
       i.style.display = '';
-      for (let i = 0; i < len; i += 1) {
-        res += generator(a.value, hui) + '\n';
+      for (let index = 0; i < len; index += 1) {
+        res += `${generator(a.value, hui)}\n`;
       }
     }
     return res;
@@ -64,13 +64,13 @@ function copying() {
   const copyText = this.document.getElementById('label');
   copyText.select();
   this.document.execCommand('copy');
-  alert('Copied the text: ' + copyText.value);
+  alert(`Copied the text: ${copyText.value}`);
 }
 function copying2() {
   const copyText = this.document.getElementById('mass-password');
   copyText.select();
   this.document.execCommand('copy');
-  alert('Copied the text: ' + copyText.value);
+  alert(`Copied the text: ${copyText.value}`);
 }
 
 console.dir(i);
