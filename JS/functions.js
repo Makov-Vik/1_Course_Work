@@ -1,3 +1,5 @@
+'use strict';
+
 // encryption with Unicode
 const EncryptByUnicode = () => {
   const textinput = this.document.getElementById('text_input').value.split('');
