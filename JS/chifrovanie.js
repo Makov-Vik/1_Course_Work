@@ -1,22 +1,18 @@
-'use strict';
-
 const btn = this.document.getElementById('copyText');
 const btnForKey = this.document.getElementById('copyKey');
-const uncopy = this.document.getElementById('uncopyText');
 const textInput = this.document.getElementById('text_input');
 const textInput1 = this.document.getElementById('text_input1');
 const keyInput = this.document.getElementById('key_input');
 const textOut = this.document.getElementById('text_out');
 const textOutKey = this.document.getElementById('text_out1');
 const textUnencrypt = this.document.getElementById('unencrypt');
-const button = this.document.getElementById('button');
 const rad = this.document.getElementsByName('dzen');
-textout.innerHTML = '';
+textOut.innerHTML = '';
 const characterSpan = this.document.createElement('span');
 const characterSpan3 = this.document.createElement('span');
 const allsymbols = '1234567890-=+[];/.<>~@#$^&()_!L:HAGWYIMNBCVXZSJ*"?№×÷|';
 const string = allsymbols.split('');
-textunencrypt.innerHTML = '';
+textUnencrypt.innerHTML = '';
 const characterSpan2 = this.document.createElement('span');
 
 const checking = (expression) => {
@@ -24,7 +20,7 @@ const checking = (expression) => {
   const afterCheck = expression.split('');
   for (let i = 0; i < afterCheck.length; i += 1) {
     if (english.test(afterCheck[i])) {
-      window.alert('Ангийский не подходит' );
+      window.alert('Ангийский не подходит');
       throw new Error('Уупс!');
     }
   }
@@ -76,22 +72,22 @@ const codding = () => { // функция кодировки
   const newAlphabet = alphabet;
   if (rad[1].checked) {
     const generatedKey = generatekey();// генерируем ключ
-    for (let j = 0; j < lenght; j += 1) { // создаём алфавит символов в тексте 
+    for (let j = 0; j < lenght; j += 1) { // создаём алфавит символов в тексте
       alphabet[res[j]] = res[j];
     }
-    
-    for (const keys  of Object.keys(newAlphabet)) { // генерируем рандомный символы для каждой буквы
+
+    for (const keys of Object.keys(newAlphabet)) { // генерируем рандомный символы для каждой буквы
       newAlphabet[keys] = randomsymbol();
     }
-    
+
     for (let i = 0; i < lenght; i += 1) { // кодируем наш текст
-      for (const keys  of Object.keys(alphabet)) {
+      for (const keys of Object.keys(alphabet)) {
         if (res[i] == keys) {
           res[i] = newAlphabet[keys];
         }
       }
     }
-    
+
     res = res.join('');
     result.key.name = generatedKey;
     result.key.code = newAlphabet;
@@ -107,8 +103,8 @@ const codding = () => { // функция кодировки
   if (rad[0].checked) {
     if (keyInput.value === result.key.name) {
       let resOfUncoding = textInput1.value.split('');
-      for (let i = 0; i < resOfUncoding.length; i++ ) {
-        for (const keys  of Object.keys(result.key.code)) {
+      for (let i = 0; i < resOfUncoding.length; i += 1) {
+        for (const keys of Object.keys(result.key.code)) {
           if (resOfUncoding[i] === result.key.cod[keys]) {
             resOfUncoding[i] = keys;
           }
@@ -117,8 +113,7 @@ const codding = () => { // функция кодировки
       resOfUncoding = resOfUncoding.join('');
       characterSpan2.innerText = resOfUncoding;
       textUnencrypt.appendChild(characterSpan2);
-    }
-    else  alert('Wrong key');
+    } else alert('Wrong key');
   }
 };
 
