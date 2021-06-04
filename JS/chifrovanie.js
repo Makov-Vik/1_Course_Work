@@ -1,3 +1,5 @@
+'use strict';
+
 const btn = this.document.getElementById('copyText');
 const btnForKey = this.document.getElementById('copyKey');
 const textInput = this.document.getElementById('text_input');
