@@ -20,7 +20,7 @@ const checking = (expression) => {
   const afterCheck = expression.split('');
   for (let i = 0; i < afterCheck.length; i += 1) {
     if (english.test(afterCheck[i])) {
-      window.alert('Ангийский не подходит');
+      alert('Ангийский не подходит');
       throw new Error('Уупс!');
     }
   }
