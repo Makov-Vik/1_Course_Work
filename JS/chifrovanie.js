@@ -84,7 +84,7 @@ const codding = () => { // функция кодировки
 
     for (let i = 0; i < lenght; i += 1) { // кодируем наш текст
       for (const keys of Object.keys(alphabet)) {
-        if (res[i] == keys) {
+        if (res[i] === keys) {
           res[i] = newAlphabet[keys];
         }
       }
