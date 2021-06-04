@@ -1,5 +1,3 @@
-'use strict';
-
 // encryption with Unicode
 const EncryptByUnicode = () => {
   const textinput = this.document.getElementById('text_input').value.split('');
@@ -15,12 +13,6 @@ const EncryptByUnicode = () => {
 
   const output = [];
   let unencrypt = [];
-  // text.forEach((element, index) => {
-  //   const random = Math.round(Math.random() * 122) + 68;
-  //   key[index] = random;
-  //   element = String.fromCharCode(text[index].charCodeAt(0));
-  //   output.push(text[index] + random);
-  // });
   for (let i = 0; i < text.length; i += 1) {
     const random = Math.round(Math.random() * 122) + 68;
     text[i] = String.fromCharCode(text[i].charCodeAt(0) + random);
@@ -52,7 +44,8 @@ const AsymmetricalCipher = () => {
   const outputasymciphet = [];
 
   // create the first element to obfuscate the message
-  const date = BigInt(new Date().getDate() + 33);
+  const shift = 33;
+  const date = BigInt(new Date().getDate() + shift);
   outputasymciphet[0] = date;
 
   // I assign public key to variables
@@ -98,8 +91,9 @@ const AsymmetricalDecryption = () => {
     // untangling
     outputasymdecryption[i - 1] = (input[i] - input[i - 1]);
   }
+  const shift = 33;
   // create the first element to obfuscate the message
-  const date = new Date().getDate() + 33;
+  const date = new Date().getDate() + shift;
 
   for (let i = 0; i < input.length - 1; i += 1) {
     outputasymdecryption[i] -= date;
@@ -110,3 +104,8 @@ const AsymmetricalDecryption = () => {
   areadecryption.innerText = outputasymdecryption.join('');
   output.appendChild(areadecryption);
 };
+
+// call functions by button
+this.document.querySelector('button').onclick = EncryptByUnicode;
+this.document.getElementById('asym_cipher').onclick = AsymmetricalCipher;
+this.document.getElementById('asym_decryption').onclick = AsymmetricalDecryption;
