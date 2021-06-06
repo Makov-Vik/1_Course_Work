@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
 // encryption with Unicode
-const EncryptByUnicode = () => {
+const encryptByUnicode = () => {
   const textinput = this.document.getElementById('text_input').value.split('');
   const textout = this.document.getElementById('text_out');
   const textunencrypt = this.document.getElementById('unencrypt');
@@ -15,19 +15,19 @@ const EncryptByUnicode = () => {
 
   const output = [];
   let unencrypt = [];
+  const range = 1001;
   for (let i = 0; i < text.length; i += 1) {
-    const random = Math.round(Math.random() * 122) + 68;
-    text[i] = String.fromCharCode(text[i].charCodeAt(0) + random);
+    const random = Math.round(Math.random() * range);
+    text[i] = String.fromCharCode(text[i].charCodeAt() + random);
     key[i] = random;
     output.push(text[i]);
   }
-  output.join('');
-  areacipher.innerText = output;
+  areacipher.innerText = output.join('');
   textout.appendChild(areacipher);
 
   // unencypt
   for (let i = 0; i < text.length; i += 1) {
-    text[i] = String.fromCharCode(output[i].charCodeAt(0) - key[i]);
+    text[i] = String.fromCharCode(output[i].charCodeAt() - key[i]);
     unencrypt += text[i];
   }
   areadecryption.innerText = unencrypt;
@@ -35,7 +35,7 @@ const EncryptByUnicode = () => {
 };
 
 // asymmetric encryption
-const AsymmetricalCipher = () => {
+const asymmetricalCipher = () => {
   // get message, keys, create output element
   const input = this.document.getElementById('text_input').value.split('');
   const openkey = this.document.getElementById('open_key_field').value.split(' ');
@@ -55,7 +55,7 @@ const AsymmetricalCipher = () => {
   const SecondKey = BigInt(openkey[1]);
 
   for (let i = 0; i < input.length; i += 1) {
-    input[i] = input[i].charCodeAt(0);
+    input[i] = input[i].charCodeAt();
 
     // asymmetric encryption
     outputasymciphet[i + 1] = ((BigInt(input[i]) ** FirstKey) % SecondKey) + date;
@@ -72,7 +72,7 @@ const AsymmetricalCipher = () => {
 };
 
 // asymmetric decryption
-const AsymmetricalDecryption = () => {
+const asymmetricalDecryption = () => {
   // get message, keys, create output element
   const input = this.document.getElementById('text_input_decryption').value.split('');
   const privatekey = this.document.getElementById('private_key_field').value.split(' ');
@@ -86,7 +86,7 @@ const AsymmetricalDecryption = () => {
   const SecondKey = BigInt(privatekey[1]);
 
   for (let i = 0; i < input.length; i += 1) {
-    input[i] = input[i].charCodeAt(0);
+    input[i] = input[i].charCodeAt();
   }
 
   for (let i = 1; i < input.length; i += 1) {
@@ -108,6 +108,6 @@ const AsymmetricalDecryption = () => {
 };
 
 // call functions by button
-this.document.querySelector('button').onclick = EncryptByUnicode;
-this.document.getElementById('asym_cipher').onclick = AsymmetricalCipher;
-this.document.getElementById('asym_decryption').onclick = AsymmetricalDecryption;
+this.document.querySelector('button').onclick = encryptByUnicode;
+this.document.getElementById('asym_cipher').onclick = asymmetricalCipher;
+this.document.getElementById('asym_decryption').onclick = asymmetricalDecryption;
