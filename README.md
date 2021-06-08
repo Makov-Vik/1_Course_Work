@@ -6,4 +6,6 @@ In addition, you can create a password on our website by setting the necessary c
 Above the term paper worked: 
 Makoviy Victor - cipher.js,
 Ivan Kovalchuk - comment.js, encryption.js
-Happy Arseny - main.js
+Shchaslyvyi Arseny - main.js
+
+we are all from the group IP - 05
