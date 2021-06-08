@@ -1,3 +1,7 @@
+'use strict';
+
+const history = {};
+
 // encryption with Unicode
 const encryptByUnicode = () => {
   const textinput = this.document.getElementById('text_input').value.split('');
@@ -7,6 +11,7 @@ const encryptByUnicode = () => {
   const areacipher = this.document.createElement('span');
   textunencrypt.innerHTML = '';
   const areadecryption = this.document.createElement('span');
+  const date = new Date().toLocaleString();
 
   const key = [];
   const text = textinput;
@@ -20,6 +25,7 @@ const encryptByUnicode = () => {
     key[i] = random;
     output.push(text[i]);
   }
+  history[date] = output;
   areacipher.innerText = output.join('');
   textout.appendChild(areacipher);
 
@@ -28,6 +34,7 @@ const encryptByUnicode = () => {
     text[i] = String.fromCharCode(output[i].charCodeAt() - key[i]);
     unencrypt += text[i];
   }
+  history[date] = unencrypt;
   areadecryption.innerText = unencrypt;
   textunencrypt.appendChild(areadecryption);
 };
@@ -42,11 +49,11 @@ const asymmetricalCipher = () => {
   const areacipher = this.document.createElement('span');
 
   const outputasymciphet = [];
-
+  const date = new Date().toLocaleString();
   // create the first element to obfuscate the message
-  const shift = 33;
-  const date = BigInt(new Date().getDate() + shift);
-  outputasymciphet[0] = date;
+  const shift = BigInt(33);
+  const time = BigInt(new Date().getDate());
+  outputasymciphet[0] = time + shift;
 
   // I assign public key to variables
   const FirstKey = BigInt(openkey[0]);
@@ -56,7 +63,7 @@ const asymmetricalCipher = () => {
     input[i] = input[i].charCodeAt();
 
     // asymmetric encryption
-    outputasymciphet[i + 1] = ((BigInt(input[i]) ** FirstKey) % SecondKey) + date;
+    outputasymciphet[i + 1] = ((BigInt(input[i]) ** FirstKey) % SecondKey) + time + shift;
 
     // entanglement
     outputasymciphet[i + 1] = (outputasymciphet[i + 1] + outputasymciphet[i]);
@@ -65,6 +72,7 @@ const asymmetricalCipher = () => {
     outputasymciphet[i] = String.fromCharCode(Number(outputasymciphet[i]));
   }
   outputasymciphet.join('');
+  history[date] = outputasymciphet;
   areacipher.innerText = outputasymciphet.join('');
   output.appendChild(areacipher);
 };
@@ -72,12 +80,13 @@ const asymmetricalCipher = () => {
 // asymmetric decryption
 const asymmetricalDecryption = () => {
   // get message, keys, create output element
-  const input = this.document.getElementById('text_input_decryption').value.split('');
+  const input = this.document.getElementById('text_input').value.split('');
   const privatekey = this.document.getElementById('private_key_field').value.split(' ');
   const output = this.document.getElementById('asymmetrical_decryption');
   output.innerHTML = '';
   const areadecryption = this.document.createElement('span');
   const outputasymdecryption = [];
+  const date = new Date().toLocaleString();
 
   // I assign private key to variables
   const FirstKey = BigInt(privatekey[0]);
@@ -93,19 +102,51 @@ const asymmetricalDecryption = () => {
   }
   const shift = 33;
   // create the first element to obfuscate the message
-  const date = new Date().getDate() + shift;
+  const time = new Date().getDate();
 
   for (let i = 0; i < input.length - 1; i += 1) {
-    outputasymdecryption[i] -= date;
+    outputasymdecryption[i] -= (time + shift);
     outputasymdecryption[i] = (BigInt(outputasymdecryption[i]) ** FirstKey) % SecondKey;
     outputasymdecryption[i] = String.fromCharCode(Number(outputasymdecryption[i]));
   }
-  outputasymdecryption.join('');
+  // outputasymdecryption.join(''); may be delete
+  history[date] = outputasymdecryption.join('');
   areadecryption.innerText = outputasymdecryption.join('');
   output.appendChild(areadecryption);
 };
 
+const getHistory = () => {
+  const out = this.document.getElementById('text_history');
+  out.innerHTML = '';
+  const span = this.document.createElement('span');
+
+  let output = '';
+
+  Object.keys(history).forEach((i) => {
+    output += `${i} --- ${history[i]}\n`;
+  });
+
+  span.innerText = output;
+  out.appendChild(span);
+};
+
+// Object.__proto__.deleteAll = () => {
+//   Object.keys(this).forEach((i) => {
+//     console.log('123\n');
+//   });
+// };
+
+const deleteAll = (e) => {
+  console.log(e.key);
+};
+this.document.getElementById('text_input').onkeydown = deleteAll;
+
 // call functions by button
-this.document.querySelector('button').onclick = encryptByUnicode;
-this.document.getElementById('asym_cipher').onclick = asymmetricalCipher;
-this.document.getElementById('asym_decryption').onclick = asymmetricalDecryption;
+if (this.document.getElementById('text_input').value === 'delete all') {
+  history.deleteAll();
+} else {
+  this.document.querySelector('button').onclick = encryptByUnicode;
+  this.document.getElementById('asym_cipher').onclick = asymmetricalCipher;
+  this.document.getElementById('asym_decryption').onclick = asymmetricalDecryption;
+  this.document.getElementById('get_history').onclick = getHistory;
+}
