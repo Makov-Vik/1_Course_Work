@@ -16,6 +16,8 @@ const allsymbols = '1234567890-=+[];/.<>~@#$^&()_!L:HAGWYIMNBCVXZSJ*"?№×÷|';
 const string = allsymbols.split('');
 textUnencrypt.innerHTML = '';
 const characterSpan2 = this.document.createElement('span');
+const maxRandNum = 99;
+const maxSide = 10;
 
 const checking = (expression) => {
   const english = /^[a-zA-Z0-9]+$/;
@@ -38,19 +40,19 @@ function randomInteger(min, max) {
   return Math.round(rand);
 }
 
-const randomsymbol = () => { // функция генерации символа
+const randomSymbol = () => { // функция генерации символа
   const rand = randomInteger(1, string.length - 1);
   const symbol = string[rand];
   string.splice(rand, 1);
   return symbol;
 };
 
-const generatekey = () => { // функия генерирования ключа
+const generateKey = () => { // функия генерирования ключа
   const key = [];
   let randomNum = 0;
-  const side = randomInteger(1, 10);
+  const side = randomInteger(1, maxSide);
   for (let c = 0; c < side; c += 1) {
-    randomNum = randomInteger(0, 99);
+    randomNum = randomInteger(0, maxRandNum);
     key.push(randomNum);
   }
   const result1 = key.join('');
@@ -62,7 +64,7 @@ const result = {
     name: '',
     code: 0,
   },
-  coddingresult: 0,
+  coddingResult: 0,
 };
 
 const codding = () => { // функция кодировки
@@ -73,16 +75,18 @@ const codding = () => { // функция кодировки
   const lenght = res.length;
   const newAlphabet = alphabet;
   if (rad[1].checked) {
-    const generatedKey = generatekey();// генерируем ключ
+    const generatedKey = generateKey();// генерируем ключ
     for (let j = 0; j < lenght; j += 1) { // создаём алфавит символов в тексте
       alphabet[res[j]] = res[j];
     }
 
+    // eslint-disable-next-line no-restricted-syntax
     for (const keys of Object.keys(newAlphabet)) { // генерируем рандомный символы для каждой буквы
-      newAlphabet[keys] = randomsymbol();
+      newAlphabet[keys] = randomSymbol();
     }
 
     for (let i = 0; i < lenght; i += 1) { // кодируем наш текст
+      // eslint-disable-next-line no-restricted-syntax
       for (const keys of Object.keys(alphabet)) {
         if (res[i] === keys) {
           res[i] = newAlphabet[keys];
@@ -93,10 +97,10 @@ const codding = () => { // функция кодировки
     res = res.join('');
     result.key.name = generatedKey;
     result.key.code = newAlphabet;
-    result.coddingresult = res;
+    result.coddingResult = res;
     characterSpan3.innerText = result.key.name;
     textOutKey.appendChild(characterSpan3);
-    characterSpan.innerText = result.coddingresult;
+    characterSpan.innerText = result.coddingResult;
     textOut.appendChild(characterSpan);
   }
   // }
@@ -107,7 +111,7 @@ const codding = () => { // функция кодировки
       let resOfUncoding = textInput1.value.split('');
       for (let i = 0; i < resOfUncoding.length; i += 1) {
         for (const keys of Object.keys(result.key.code)) {
-          if (resOfUncoding[i] === result.key.cod[keys]) {
+          if (resOfUncoding[i] === result.key.code[keys]) {
             resOfUncoding[i] = keys;
           }
         }
@@ -120,7 +124,7 @@ const codding = () => { // функция кодировки
 };
 
 btn.onclick = function copytext() {
-  navigator.clipboard.writeText(result.coddingresult);
+  navigator.clipboard.writeText(result.coddingResult);
 };
 
 btnForKey.onclick = function copykey() {
