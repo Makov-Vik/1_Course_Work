@@ -4,9 +4,9 @@ We have several implementations of this, using an example of an object, using Un
 In addition, you can create a password on our website by setting the necessary conditions for it.
 
 Above the term paper worked: 
-Makoviy Victor - cipher.js,
+Makoviy Victor - cipher.js, 
 Ivan Kovalchuk - comment.js, encryption.js
-Shchaslyvyi Arseny - main.js
+and Shchaslyvyi Arseny - main.js
 
 We are all from the group IP - 05
 
