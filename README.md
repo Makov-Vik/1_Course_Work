@@ -8,4 +8,6 @@ Makoviy Victor - cipher.js,
 Ivan Kovalchuk - comment.js, encryption.js
 Shchaslyvyi Arseny - main.js
 
-we are all from the group IP - 05
+We are all from the group IP - 05
+
+![image](https://user-images.githubusercontent.com/72148650/121265247-30543380-c8c1-11eb-9572-407d3657b139.png)
