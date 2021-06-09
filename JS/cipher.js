@@ -1,6 +1,6 @@
 'use strict';
 
-const history = {};
+let history = {};
 
 // encryption with Unicode
 const encryptByUnicode = () => {
@@ -122,31 +122,31 @@ const getHistory = () => {
 
   let output = '';
 
+  let count = 0;
   Object.keys(history).forEach((i) => {
-    output += `${i} --- ${history[i]}\n`;
+    count += 1;
+    output += `${count}) ${i} --- ${history[i]}\n`;
   });
 
   span.innerText = output;
   out.appendChild(span);
 };
 
-// Object.__proto__.deleteAll = () => {
-//   Object.keys(this).forEach((i) => {
-//     console.log('123\n');
-//   });
-// };
-
-const deleteAll = (e) => {
-  console.log(e.key);
+// function for delete all elements of history
+const deleteAll = () => {
+  history = {};
 };
-this.document.getElementById('text_input').onkeydown = deleteAll;
+
+// check message for deletion
+const chekOnDelete = () => {
+  if (this.document.getElementById('text_input').value === 'delete '){
+
+  } else if (this.document.getElementById('text_input').value === 'delete all history') deleteAll();
+};
+setInterval(chekOnDelete, 500);
 
 // call functions by button
-if (this.document.getElementById('text_input').value === 'delete all') {
-  history.deleteAll();
-} else {
-  this.document.querySelector('button').onclick = encryptByUnicode;
-  this.document.getElementById('asym_cipher').onclick = asymmetricalCipher;
-  this.document.getElementById('asym_decryption').onclick = asymmetricalDecryption;
-  this.document.getElementById('get_history').onclick = getHistory;
-}
+this.document.querySelector('button').onclick = encryptByUnicode;
+this.document.getElementById('asym_cipher').onclick = asymmetricalCipher;
+this.document.getElementById('asym_decryption').onclick = asymmetricalDecryption;
+this.document.getElementById('get_history').onclick = getHistory;
