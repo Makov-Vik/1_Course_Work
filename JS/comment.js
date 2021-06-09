@@ -5,11 +5,19 @@ commentOut.innerHTML = '';
 const btnComment = this.document.getElementById('add_comment');
 const userIn = this.document.getElementById('user_input');
 const messageIn = this.document.getElementById('message_input');
-const data = [];
+let data = [];
 
-const loadComment = (file) => {
-
+const loadComment = () => {
+  if (localStorage.getItem('data')) data = JSON.parse(localStorage.getItem('data'));
+  data.forEach((pastComment) => {
+    const field = this.document.createElement('span');
+    const loadCom = `<p class="alert alert-warning">${pastComment.name}: ${pastComment.text}</p>`;
+    field.innerHTML = loadCom;
+    commentOut.appendChild(field);
+  });
 };
+
+loadComment();
 
 const createSpan = () => {
   const span = this.document.createElement('span');
