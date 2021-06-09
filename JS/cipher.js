@@ -139,9 +139,7 @@ const deleteAll = () => {
 
 // check message for deletion
 const chekOnDelete = () => {
-  if (this.document.getElementById('text_input').value === 'delete '){
-
-  } else if (this.document.getElementById('text_input').value === 'delete all history') deleteAll();
+  if (this.document.getElementById('text_input').value === 'delete all') deleteAll();
 };
 setInterval(chekOnDelete, 500);
 
