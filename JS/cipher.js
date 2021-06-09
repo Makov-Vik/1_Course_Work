@@ -1,5 +1,3 @@
-'use strict';
-
 let history = {};
 
 // encryption with Unicode
@@ -139,7 +137,15 @@ const deleteAll = () => {
 
 // check message for deletion
 const chekOnDelete = () => {
-  if (this.document.getElementById('text_input').value === 'delete all') deleteAll();
+  const text = this.document.getElementById('text_input').value;
+  const checkLength = (text.length === 'delete n'.length) ? 1 : 0;
+  const lastSymbol = parseInt(text[text.length - 1], 10);
+  const checkNumber = !Number.isNaN(lastSymbol) ? 1 : 0;
+  // исправить случай для одного удаления
+  if (checkLength && checkNumber) {
+    const ke = Object.keys(history);
+    delete history[ke[lastSymbol - 1]];
+  } else if (text === 'delete all') deleteAll();
 };
 setInterval(chekOnDelete, 500);
 
