@@ -80,10 +80,9 @@ const codding = () => { // функция кодировки
       alphabet[res[j]] = res[j];
     }
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const keys of Object.keys(newAlphabet)) { // генерируем рандомный символы для каждой буквы
-      newAlphabet[keys] = randomSymbol();
-    }
+    Object.keys(newAlphabet).forEach((keys1) => { // генерируем рандомный символы для каждой буквы
+      newAlphabet[keys1] = randomSymbol();
+    });
 
     for (let i = 0; i < lenght; i += 1) { // кодируем наш текст
       // eslint-disable-next-line no-restricted-syntax
