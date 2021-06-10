@@ -134,6 +134,11 @@ const deleteAll = () => {
   history = {};
 };
 
+// call functions by button
+this.document.querySelector('button').onclick = encryptByUnicode;
+this.document.getElementById('asym_cipher').onclick = asymmetricalCipher;
+this.document.getElementById('asym_decryption').onclick = asymmetricalDecryption;
+
 // check message for deletion
 const chekOnDelete = () => {
   const text = this.document.getElementById('text_input').value;
@@ -150,11 +155,6 @@ const chekOnDelete = () => {
 
 setInterval(chekOnDelete, 500);
 
-// call functions by button
-this.document.querySelector('button').onclick = encryptByUnicode;
-this.document.getElementById('asym_cipher').onclick = asymmetricalCipher;
-this.document.getElementById('asym_decryption').onclick = asymmetricalDecryption;
-
 // encryption history by button
 const historyText = this.document.getElementById('get_history');
 
@@ -163,20 +163,20 @@ let flag = 0;
 
 historyText.addEventListener('click', () => {
   const out = this.document.getElementById('text_history');
+  out.innerHTML = '';
+  const span = this.document.createElement('span');
+  let output = '';
+  let count = 0;
+  Object.keys(history).forEach((i) => {
+    count += 1;
+    output += `${count}) ${i} --- ${history[i]}\n`;
+  });
+  span.innerText = output;
+  out.appendChild(span);
   if (flag === 0) {
-    out.innerHTML = '';
-    const span = this.document.createElement('span');
-    let output = '';
-    let count = 0;
-    Object.keys(history).forEach((i) => {
-      count += 1;
-      output += `${count}) ${i} --- ${history[i]}\n`;
-    });
-    span.innerText = output;
-    out.appendChild(span);
-    flag = 1;
     // show history
     out.style.display = 'block';
+    flag = 1;
   } else {
     // hide history
     out.style.display = 'none';
