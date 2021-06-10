@@ -1,3 +1,5 @@
+'use strict';
+
 let history = {};
 
 // encryption with Unicode
@@ -55,7 +57,14 @@ const asymmetricalCipher = () => {
 
   // I assign public key to variables
   const FirstKey = BigInt(openkey[0]);
-  const SecondKey = BigInt(openkey[1]);
+  let SecondKey;
+  // key verification
+  try {
+    SecondKey = BigInt(openkey[1]);
+  } catch (e) {
+    alert('Wrong Open Key');
+    throw new Error('Wrong Open Key');
+  }
 
   for (let i = 0; i < input.length; i += 1) {
     input[i] = input[i].charCodeAt();
@@ -88,7 +97,14 @@ const asymmetricalDecryption = () => {
 
   // I assign private key to variables
   const FirstKey = BigInt(privatekey[0]);
-  const SecondKey = BigInt(privatekey[1]);
+  let SecondKey;
+  // key verification
+  try {
+    SecondKey = BigInt(privatekey[1]);
+  } catch (e) {
+    alert('Wrong Private Key');
+    throw new Error('Wrong Private Key');
+  }
 
   for (let i = 0; i < input.length; i += 1) {
     input[i] = input[i].charCodeAt();
@@ -113,23 +129,6 @@ const asymmetricalDecryption = () => {
   output.appendChild(areadecryption);
 };
 
-const getHistory = () => {
-  const out = this.document.getElementById('text_history');
-  out.innerHTML = '';
-  const span = this.document.createElement('span');
-
-  let output = '';
-
-  let count = 0;
-  Object.keys(history).forEach((i) => {
-    count += 1;
-    output += `${count}) ${i} --- ${history[i]}\n`;
-  });
-
-  span.innerText = output;
-  out.appendChild(span);
-};
-
 // function for delete all elements of history
 const deleteAll = () => {
   history = {};
@@ -141,16 +140,46 @@ const chekOnDelete = () => {
   const checkLength = (text.length === 'delete n'.length) ? 1 : 0;
   const lastSymbol = parseInt(text[text.length - 1], 10);
   const checkNumber = !Number.isNaN(lastSymbol) ? 1 : 0;
+
   // исправить случай для одного удаления
   if (checkLength && checkNumber) {
     const ke = Object.keys(history);
     delete history[ke[lastSymbol - 1]];
   } else if (text === 'delete all') deleteAll();
 };
+
 setInterval(chekOnDelete, 500);
 
 // call functions by button
 this.document.querySelector('button').onclick = encryptByUnicode;
 this.document.getElementById('asym_cipher').onclick = asymmetricalCipher;
 this.document.getElementById('asym_decryption').onclick = asymmetricalDecryption;
-this.document.getElementById('get_history').onclick = getHistory;
+
+// encryption history by button
+const historyText = this.document.getElementById('get_history');
+
+// history is shown or not
+let flag = 0;
+
+historyText.addEventListener('click', () => {
+  const out = this.document.getElementById('text_history');
+  if (flag === 0) {
+    out.innerHTML = '';
+    const span = this.document.createElement('span');
+    let output = '';
+    let count = 0;
+    Object.keys(history).forEach((i) => {
+      count += 1;
+      output += `${count}) ${i} --- ${history[i]}\n`;
+    });
+    span.innerText = output;
+    out.appendChild(span);
+    flag = 1;
+    // show history
+    out.style.display = 'block';
+  } else {
+    // hide history
+    out.style.display = 'none';
+    flag = 0;
+  }
+});
