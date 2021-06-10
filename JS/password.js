@@ -9,7 +9,7 @@ const biba2 = this.document.getElementById('biba2');
 const input2 = this.document.getElementById('input2');
 const buttonCopy = this.document.getElementById('button2');
 
-function generator(len, settings) {
+const generator = (len, settings) => {
   let str = '';
   if (settings.BigChungus) {
     str += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -32,9 +32,9 @@ function generator(len, settings) {
     }
   }
   return string;
-}
+};
 
-function checker() {
+const checker = () => {
   const uppercase = this.document.getElementById('A-Z');
   const lowercase = this.document.getElementById('a-z');
   const number = this.document.getElementById('0-9');
@@ -64,20 +64,21 @@ function checker() {
   massPassword.textContent = amountgenerator(input2.value);
   biba.textContent = input.value;
   biba2.textContent = input2.value;
-}
+};
 
-function copying() {
+const copying = () => {
   const copyText = this.document.getElementById('label');
   copyText.select();
   this.document.execCommand('copy');
   alert('Copied password: ' + copyText.value);
-}
-function copying2() {
+};
+
+const copying2 = () => {
   const copyText = this.document.getElementById('mass-password');
   copyText.select();
   this.document.execCommand('copy');
   alert('Copied the text: ' + copyText.value);
-}
+};
 
 input.addEventListener('input', checker);
 buttonPassword.addEventListener('click', checker);
