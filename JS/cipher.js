@@ -1,5 +1,3 @@
-'use strict';
-
 let history = {};
 
 // encryption with Unicode
@@ -112,14 +110,14 @@ const asymmetricalDecryption = () => {
 
   for (let i = 1; i < input.length; i += 1) {
     // untangling
-    outputasymdecryption[i - 1] = (input[i] - input[i - 1]);
+    outputasymdecryption[i - 1] = input[i] - input[i - 1];
   }
   const shift = 33;
   // create the first element to obfuscate the message
   const time = new Date().getDate();
 
   for (let i = 0; i < input.length - 1; i += 1) {
-    outputasymdecryption[i] -= (time + shift);
+    outputasymdecryption[i] -= time + shift;
     outputasymdecryption[i] = (BigInt(outputasymdecryption[i]) ** FirstKey) % SecondKey;
     outputasymdecryption[i] = String.fromCharCode(Number(outputasymdecryption[i]));
   }
@@ -153,33 +151,35 @@ const chekOnDelete = () => {
   } else if (text === 'delete all') deleteAll();
 };
 
+// 500 change
 setInterval(chekOnDelete, 500);
 
 // encryption history by button
 const historyText = this.document.getElementById('get_history');
 
 // history is shown or not
-let flag = 0;
+let selector = 0;
 
 historyText.addEventListener('click', () => {
   const out = this.document.getElementById('text_history');
   out.innerHTML = '';
   const span = this.document.createElement('span');
-  let output = '';
+  const output = [];
+  // let output = '';
   let count = 0;
   Object.keys(history).forEach((i) => {
     count += 1;
-    output += `${count}) ${i} --- ${history[i]}\n`;
+    output.push(`${count}) ${i} --- ${history[i]}\n`);
   });
-  span.innerText = output;
+  span.innerText = output.join('');
   out.appendChild(span);
-  if (flag === 0) {
+  if (selector === 0) {
     // show history
     out.style.display = 'block';
-    flag = 1;
+    selector = 1;
   } else {
     // hide history
     out.style.display = 'none';
-    flag = 0;
+    selector = 0;
   }
 });
