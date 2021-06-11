@@ -16,8 +16,6 @@ const allsymbols = '1234567890-=+[];/.<>~@#$^&()_!L:HAGWYIMNBCVXZSJ*"?№×÷|';
 const string = allsymbols.split('');
 textUnencrypt.innerHTML = '';
 const characterSpan2 = this.document.createElement('span');
-const maxRandNum = 99;
-const maxSide = 10;
 
 const checking = (expression) => {
   const english = /^[a-zA-Z0-9]+$/;
@@ -50,6 +48,8 @@ const randomSymbol = () => { // функция генерации символа
 const generateKey = () => { // функия генерирования ключа
   const key = [];
   let randomNum = 0;
+  const maxRandNum = 99;
+  const maxSide = 10;
   const side = randomInteger(1, maxSide);
   for (let c = 0; c < side; c += 1) {
     randomNum = randomInteger(0, maxRandNum);
@@ -102,9 +102,8 @@ const codding = () => { // функция кодировки
     characterSpan.innerText = result.coddingResult;
     textOut.appendChild(characterSpan);
   }
-  // }
+  
   // вывод зашифрован текста
-  // const uncodding = (key1, text) =>{ // функия раскодировки
   if (rad[0].checked) {
     if (keyInput.value === result.key.name) {
       let resOfUncoding = textInput1.value.split('');
